@@ -13,20 +13,16 @@
 
 <body>
 
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Countries
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Universities in Canada</a></li>
-            <li><a class="dropdown-item" href="#">Universities in America</a></li>
-        </ul>
-    </div>
+
+    <select>
+                <option value="Canada" selected="selected">Canada</option>
+                <option value="United+States">United States</option>
+    </select>
 
     <div class="container">
         <div>
             <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseComponent" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Universities in Canada
+                Universitiy List
               </a>
         </div>
         <div class="collapse" id="collapseComponent">
@@ -39,6 +35,7 @@
 
 
     </div>
+
     <script src="university.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>

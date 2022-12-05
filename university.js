@@ -1,4 +1,15 @@
 $(document).ready(function() {
+    $("select")
+        .change(function() {
+            var str = "";
+            $("select option:selected").each(function() {
+                str += $(this).text() + " ";
+            });
+
+
+        })
+        .trigger("change");
+
     $.get("http://universities.hipolabs.com/search?country=Canada", function(data, status) {
         if (status == "success" && data != null && data != undefined) {
             for (let index = 0; index < data.length; index++) {
