@@ -1,33 +1,34 @@
 $(document).ready(function() {
-    $("select")
-        .change(function() {
-            var str = "";
-            $("select option:selected").each(function() {
-                str += $(this).text() + " ";
-            });
 
+    setButtonText();
+    generateUniversitiesList(getSelectedValue());
 
-        })
-        .trigger("change");
+    $("#target").change(function() {
+        setButtonText();
+        generateUniversitiesList(getSelectedValue());
 
-    $.get("http://universities.hipolabs.com/search?country=Canada", function(data, status) {
-        if (status == "success" && data != null && data != undefined) {
-            for (let index = 0; index < data.length; index++) {
-                $("#universityList").append(`<a target="_blank" href="${data[index].web_pages[0]}" class="list-group-item list-group-item-action">${data[index].name}</a>`);
-
-            }
-        } else {
-            $("#universityList").append("Can't load the list from url.");
-        }
     });
-    $.get("http://universities.hipolabs.com/search?country=United%20States", function(data, status) {
-        if (status == "success" && data != null && data != undefined) {
-            for (let index = 0; index < data.length; index++) {
-                $("#universityList").append(`<a target="_blank" href="${data[index].web_pages[0]}" class="list-group-item list-group-item-action">${data[index].name}</a>`);
 
+    function getSelectedValue() {
+        return $('#target').find(":selected").val();
+    }
+
+    function setButtonText() {
+        $("#collapseButton").html("Universities in " + $('#target').find(":selected").text());
+    }
+
+    function generateUniversitiesList(country) {
+        var urlLink = "http://universities.hipolabs.com/search?country=" + country;
+        $.get(urlLink, function(data, status) {
+            if (status == "success" && data != null && data != undefined) {
+                $("#universityList").html('');
+                for (let index = 0; index < data.length; index++) {
+                    $("#universityList").append(`<a target="_blank" href="${data[index].web_pages[0]}" class="list-group-item list-group-item-action">${data[index].name}</a>`);
+
+                }
+            } else {
+                $("#universityList").append("Can't load the list from url.");
             }
-        } else {
-            $("#universityList").append("Can't load the list from url.");
-        }
-    });
+        });
+    }
 });
